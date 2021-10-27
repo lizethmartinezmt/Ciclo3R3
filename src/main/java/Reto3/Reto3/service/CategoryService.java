@@ -19,17 +19,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
     
+    /**
+     * Permite recibir la logica de negocio
+     * Le va a indicar al framework
+     */
     @Autowired
     private CategoryRepository metodosCrud;
 
+    /**
+     * Retorna una lista
+     */
     public List<Category> getAll() {
         return metodosCrud.getAll();
     }
 
+    /**
+     * get para obtener una categoria especifica por medio del servicio
+     */
     public Optional<Category> getCategory(int categoryId) {
         return metodosCrud.getCategory(categoryId);
     }
 
+    /**
+     * Guardar registro de habitación
+     */
     public Category save(Category categoria) {
         if (categoria.getId() == null) {
             return metodosCrud.save(categoria);
@@ -43,6 +56,9 @@ public class CategoryService {
         }
     }
 
+    /**
+     * Funcion para actualizar
+     */
     public Category update(Category categoria) {
         if (categoria.getId() != null) {
             Optional<Category> g = metodosCrud.getCategory(categoria.getId());
@@ -59,6 +75,9 @@ public class CategoryService {
         return categoria;
     }
 
+    /**
+     * Funcion para eliminar
+     */
     public boolean deleteCategory(int categoriaId) {
         Boolean d = getCategory(categoriaId).map(categoria -> {
             metodosCrud.delete(categoria);

@@ -25,6 +25,9 @@ import javax.persistence.Table;
 public class Reservation implements Serializable {
 
     @Id
+    /**
+     * Función para que el id sea generado automaticamente
+     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
     private Date startDate;
@@ -32,17 +35,25 @@ public class Reservation implements Serializable {
     private String status = "created";
     private String score;
     
-    /**Llaves Foraneas*/
+    /**
+     * Llave Foranea para la unión con a tabla room
+     */
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnoreProperties("reservations")
     private Room room;
 
+    /**
+     * Llave Foranea para la unión con a tabla client
+     */
     @ManyToOne
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
+    /**
+     * Getter y Setter
+     */
     public String getScore() {
         return score;
     }

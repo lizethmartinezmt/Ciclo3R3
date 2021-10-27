@@ -25,31 +25,24 @@ import javax.persistence.Table;
 public class Category implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     /**
-     * Id clave primaria
+     * Función para que el id sea generado automaticamente
      */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
     
     /**
-     * Llaves Foraneas
+     * Llave foranea que une con tabla room
      */
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "category")
     @JsonIgnoreProperties("category")
-    private List<Room> rooms;
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
+    public List<Room> rooms;
     
-    
+    /**
+     * Getter y Setter
+     */
     public Integer getId() {
         return id;
     }
@@ -73,5 +66,12 @@ public class Category implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 }

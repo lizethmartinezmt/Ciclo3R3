@@ -16,24 +16,31 @@ import org.springframework.stereotype.Repository;
  *
  * @author KUKURU
  */
+//Permite traer y enviar información de base de datos
 @Repository
 public class RoomRepository {
     
     @Autowired
+    //metodos que van a llamar las acciones del crud repository
     private RoomInterface crud;
 
+    // Consulta los elementos de la base y los entrega en una lista
     public List<Room> getAll() {
         return (List<Room>) crud.findAll();
     }
 
+    //Si el dato esta se entrega y si no existe el dato no ejecuta nada;
+    // con ese Optional se evitan problemas con los null
     public Optional<Room> getRoom(int id) {
         return crud.findById(id);
     }
 
+    //Para guardar
     public Room save(Room room) {
         return crud.save(room);
     }
 
+    //Para eliminar
     public void delete(Room room) {
         crud.delete(room);
     }

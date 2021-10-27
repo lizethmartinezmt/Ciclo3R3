@@ -24,6 +24,9 @@ import javax.persistence.Table;
 @Table(name = "client")
 public class Client implements Serializable{
     @Id
+    /**
+     * Función para que el id sea generado automaticamente
+     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
     private String email;
@@ -32,16 +35,22 @@ public class Client implements Serializable{
     private Integer age;
     
     /**
-     * Llaves Foraneas
+     * Llaves Foraneas para la relacion entre client y messages
      */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     public List<Message> messages;
 
+    /**
+     * Llaves Foraneas para la relacion entre client y reservations
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     public List<Reservation> reservations;
-
+    
+    /**
+     * Getter y Setter
+     */
     public List<Message> getMessages() {
         return messages;
     }

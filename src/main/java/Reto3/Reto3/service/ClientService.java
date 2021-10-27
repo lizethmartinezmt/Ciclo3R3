@@ -19,17 +19,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
     
+    /**
+     * Permite recibir la logica de negocio
+     * Le va a indicar al framework
+     */
     @Autowired
     private ClientRepository metodosCrud;
 
+    /**
+     * Retorna una lista
+     */
     public List<Client> getAll() {
         return metodosCrud.getAll();
     }
 
+    /**
+     * get para obtener un cliente especifica por medio del servicio
+     */
     public Optional<Client> getClient(int clientId) {
         return metodosCrud.getClient(clientId);
     }
-
+    
+    /**
+     * Guardar registro de habitación
+     */
     public Client save(Client client) {
         if (client.getIdClient() == null) {
             return metodosCrud.save(client);
@@ -43,6 +56,9 @@ public class ClientService {
         }
     }
 
+    /**
+     * Funcion para actualizar
+     */
     public Client update(Client client) {
         if (client.getIdClient() != null) {
             Optional<Client> e = metodosCrud.getClient(client.getIdClient());
@@ -66,6 +82,9 @@ public class ClientService {
         }
     }
 
+     /**
+     * Funcion para eliminar
+     */
     public boolean deleteClient(int clientId) {
         Boolean aBoolean = getClient(clientId).map(client -> {
             metodosCrud.delete(client);

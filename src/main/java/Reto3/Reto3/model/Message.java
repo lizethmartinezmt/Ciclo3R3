@@ -23,18 +23,27 @@ import javax.persistence.Table;
 @Table(name = "message")
 public class Message implements Serializable{
     @Id
+    /**
+     * Función para que el id sea generado automaticamente
+     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
     private String messageText;
 
+    /**
+     * Llave foranea que une con tabla room
+     */
     @ManyToOne
-    @JoinColumn(name = "id")
-    @JsonIgnoreProperties({"messages", "client", "reservations"})
+    @JoinColumn(name="roomId")
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Room room;
 
+    /**
+     * Llave foranea que une con tabla Client
+     */
     @ManyToOne
-    @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"messages", "reservations", "client"})
+    @JoinColumn(name="clientId")
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {
