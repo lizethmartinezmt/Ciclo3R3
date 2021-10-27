@@ -33,7 +33,6 @@ public class Reservation implements Serializable {
     private Date startDate;
     private Date devolutionDate;
     private String status = "created";
-    private String score;
     
     /**
      * Llave Foranea para la unión con a tabla room
@@ -50,18 +49,12 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
+    
+    private String score;
 
     /**
      * Getter y Setter
      */
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
-
     public Room getRoom() {
         return room;
     }
@@ -108,6 +101,14 @@ public class Reservation implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
     
 }
