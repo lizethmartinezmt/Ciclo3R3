@@ -20,7 +20,7 @@ public class SecurityWeb extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers("/", "/login.html", "/error", "/api/**","/images/**","/js/**","/css/**","/webjars/**").permitAll()
+                .antMatchers("/", "/login.html", "/error" , "/api/**","/images/**","/js/**","/css/**","/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().ignoringAntMatchers("/api/**", "/logout")
                 .and().exceptionHandling()
